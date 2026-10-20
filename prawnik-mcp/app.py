@@ -148,5 +148,5 @@ host=os.getenv('RENDER_EXTERNAL_HOSTNAME','').strip() or os.getenv('PRAWNIK_ALLO
 if not re.fullmatch(r'[a-zA-Z0-9.-]+',host):raise RuntimeError('Invalid public hostname')
 security=TransportSecuritySettings(allowed_hosts=[host,host+':*','localhost','localhost:*','127.0.0.1','127.0.0.1:*'],
     allowed_origins=['https://chatgpt.com','https://chat.openai.com'])
-app=BearerGate(mcp.streamable_http_app(transport_security=security))
+app=BearerGate(mcp.streamable_http_app())
 if __name__=='__main__':uvicorn.run(app,host='0.0.0.0',port=int(os.getenv('PORT','8000')))
